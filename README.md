@@ -1,22 +1,17 @@
-# Netbox BGP Plugin
-[Netbox](https://github.com/netbox-community/netbox) plugin for BGP related objects documentation.
+# Nautobot BGP Plugin
+[Nautobot](https://github.com/nautobot/nautobot) plugin for BGP related objects documentation.
+
+This is a fork of the original [Netbox Plugin](https://github.com/k01ek/netbox-bgp) at v0.3.9 - this was
+the last version before the Nautobot fork from Netbox v2.10.4.     Later versions of the plugin are using
+some of the newer Netbox features.
 
 ## Compatibility
 
-This plugin in compatible with [NetBox](https://netbox.readthedocs.org/) 2.10 and later.
+I worked with Nautobot v1.2.11 - your mileage may vary!
 
 ## Installation
 
-The plugin is available as a Python package in pypi and can be installed with pip
-
-```
-pip install netbox-bgp
-```
-Enable the plugin in /opt/netbox/netbox/netbox/configuration.py:
-```
-PLUGINS = ['netbox_bgp']
-```
-Restart NetBox and add `netbox-bgp` to your local_requirements.txt
+Install direct from the repo.    Not currently available through pypi.
 
 ## Configuration
 
@@ -25,21 +20,3 @@ The following options are available:
 left, right, full_width. Set empty value for disable.
 
 ## Screenshots
-
-BGP Session Object
-![BGP Session](docs/img/bgp_sess.png)
-
-BGP Session Table
-![BGP Session Table](docs/img/bgp_sess_list.png)
-
-Device Extension
-![Device Session Table](docs/img/dev_sess_list.png)
-
-ASN Object
-![ASN](docs/img/asn.png)
-
-ASN Table
-![ASN Table](docs/img/asn_list.png)
-
-Community Object
-![Community](docs/img/commun.png)
