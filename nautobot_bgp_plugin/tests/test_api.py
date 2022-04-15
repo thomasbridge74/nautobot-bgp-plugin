@@ -1,18 +1,20 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
 
-from users.models import Token
+from nautobot.users.models import Token
 
-from tenancy.models import Tenant
-from dcim.models import Site, DeviceRole, DeviceType, Manufacturer, Device, Interface
-from ipam.models import IPAddress
+from nautobot.tenancy.models import Tenant
+from nautobot.dcim.models import Site, DeviceRole, DeviceType, Manufacturer, Device, Interface
+from nautobot.ipam.models import IPAddress
 
-from netbox_bgp.models import ASN, Community, BGPPeerGroup, BGPSession
+from nautobot_bgp_plugin.models import ASN, Community, BGPPeerGroup, BGPSession
 
+User = get_user_model()
 
 class BaseTestCase(TestCase):
     def setUp(self):
@@ -204,8 +206,8 @@ class SessionTestCase(BaseTestCase):
         self.assertEqual(response.data['description'], self.session.description)
         self.assertEqual(response.data['local_as']['number'], self.session.local_as.number)
         self.assertEqual(response.data['remote_as']['number'], self.session.remote_as.number)
-        self.assertEqual(response.data['local_address']['address'], self.session.local_address.address)
-        self.assertEqual(response.data['remote_address']['address'], self.session.remote_address.address)
+        self.assertEqual(response.data['local_address']['address'], str(self.session.local_address.address))
+        self.assertEqual(response.data['remote_address']['address'], str(self.session.remote_address.address))
         self.assertEqual(response.data['status']['value'], self.session.status)
         self.assertEqual(response.data['peer_group']['name'], self.session.peer_group.name)
         self.assertEqual(response.data['peer_group']['description'], self.session.peer_group.description)

@@ -2,11 +2,11 @@ from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
 from django.test import TestCase
 
-from tenancy.models import Tenant
-from dcim.models import Site, Device, Manufacturer, DeviceRole, DeviceType
-from ipam.models import IPAddress
+from nautobot.tenancy.models import Tenant
+from nautobot.dcim.models import Site, Device, Manufacturer, DeviceRole, DeviceType
+from nautobot.ipam.models import IPAddress
 
-from netbox_bgp.models import ASN, BGPSession, Community, RoutingPolicy, BGPPeerGroup
+from nautobot_bgp_plugin.models import ASN, BGPSession, Community, RoutingPolicy, BGPPeerGroup
 
 
 class ASNTestCase(TestCase):
