@@ -17,7 +17,7 @@ services:
       - ./dev.env
     volumes:
       - ./configuration.py:/opt/netbox/netbox/netbox/configuration.py
-      - ../netbox_bgp:/source/netbox_bgp
+      - ../nautobot_bgp_plugin:/source/nautobot_bgp_plugin
     tty: true
   worker:
     build:
@@ -30,7 +30,7 @@ services:
       - ./dev.env
     volumes:
       - ./configuration.py:/opt/netbox/netbox/netbox/configuration.py
-      - ../netbox_bgp:/source/netbox_bgp
+      - ../nautobot_bgp_plugin:/source/nautobot_bgp_plugin
     tty: true
   postgres:
     image: postgres:12
