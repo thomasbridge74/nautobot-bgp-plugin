@@ -5,19 +5,18 @@ from rest_framework.serializers import (
 )
 from rest_framework.relations import PrimaryKeyRelatedField
 
-from netbox.api import ChoiceField, WritableNestedSerializer, ValidatedModelSerializer
-from dcim.api.nested_serializers import NestedSiteSerializer, NestedDeviceSerializer
-from tenancy.api.nested_serializers import NestedTenantSerializer
-from extras.api.nested_serializers import NestedTagSerializer
-from ipam.api.nested_serializers import NestedIPAddressSerializer
+from nautobot.core.api import ChoiceField, WritableNestedSerializer, ValidatedModelSerializer
+from nautobot.dcim.api.nested_serializers import NestedSiteSerializer, NestedDeviceSerializer
+from nautobot.tenancy.api.nested_serializers import NestedTenantSerializer
+from nautobot.extras.api.nested_serializers import NestedTagSerializer
+from nautobot.ipam.api.nested_serializers import NestedIPAddressSerializer
 
 
-try:
-    from extras.api.customfields import CustomFieldModelSerializer
-except ImportError:
-    from netbox.api.serializers import CustomFieldModelSerializer
+from nautobot.extras.api.customfields import CustomFieldModelSerializer
+# except ImportError:
+#     from netbox.api.serializers import CustomFieldModelSerializer
 
-from netbox_bgp.models import (
+from nautobot_bgp_plugin.models import (
     ASN,
     ASNStatusChoices,
     BGPSession,

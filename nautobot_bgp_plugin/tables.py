@@ -1,7 +1,7 @@
 import django_tables2 as tables
 from django.utils.safestring import mark_safe
 
-from utilities.tables import BaseTable, ChoiceFieldColumn, ToggleColumn, TagColumn
+from nautobot.utilities.tables import BaseTable, ChoiceFieldColumn, ToggleColumn, TagColumn
 
 from .models import ASN, Community, BGPSession, RoutingPolicy, BGPPeerGroup
 

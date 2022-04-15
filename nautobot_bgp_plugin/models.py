@@ -3,21 +3,21 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from taggit.managers import TaggableManager
 
-from utilities.choices import ChoiceSet
-from utilities.querysets import RestrictedQuerySet
+from nautobot.utilities.choices import ChoiceSet
+from nautobot.utilities.querysets import RestrictedQuerySet
 
-try:
-    from extras.models import ChangeLoggedModel
-except ImportError:
-    from netbox.models import ChangeLoggedModel
+# try:
+from nautobot.extras.models import ChangeLoggedModel
+# except ImportError:
+#     from netbox.models import ChangeLoggedModel
 
-try:
-    from extras.models import CustomFieldModel
-except ImportError:
-    from netbox.models import CustomFieldsMixin as CustomFieldModel
+# try:
+from nautobot.extras.models import CustomFieldModel
+# except ImportError:
+#     from netbox.models import CustomFieldsMixin as CustomFieldModel
 
-from extras.models import TaggedItem
-from extras.utils import extras_features
+from nautobot.extras.models import TaggedItem
+from nautobot.extras.utils import extras_features
 
 
 class ASNStatusChoices(ChoiceSet):

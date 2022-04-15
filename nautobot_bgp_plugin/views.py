@@ -1,6 +1,7 @@
 from django.db.models import Q
 
-from netbox.views import generic
+# from netbox.views import generic
+from nautobot.extras.views import generic
 
 from .filters import (
     ASNFilterSet,

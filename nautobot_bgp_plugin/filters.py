@@ -4,14 +4,14 @@ from django.db.models import Q
 from netaddr.core import AddrFormatError
 
 # With netbox v2.11.3 TagFilter was moved to extras
-try:
-    from utilities.filters import TagFilter
-except ImportError:
-    from extras.filters import TagFilter
+# try:
+from nautobot.utilities.filters import TagFilter
+# except ImportError:
+#     from extras.filters import TagFilter
 
 from .models import ASN, Community, BGPSession, RoutingPolicy, BGPPeerGroup
-from ipam.models import IPAddress
-from dcim.models import Device
+from nautobot.ipam.models import IPAddress
+from nautobot.dcim.models import Device
 
 
 class ASNFilterSet(django_filters.FilterSet):

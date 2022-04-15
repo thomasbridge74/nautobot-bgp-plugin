@@ -1,5 +1,5 @@
 from django.urls import path
-from extras.views import ObjectChangeLogView
+from nautobot.extras.views import ObjectChangeLogView
 from .models import ASN, BGPSession, Community, RoutingPolicy, BGPPeerGroup
 
 from .views import (

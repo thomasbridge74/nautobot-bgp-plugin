@@ -7,8 +7,8 @@ from .serializers import (
     BGPPeerGroupSerializer,
     CommunitySerializer,
 )
-from netbox_bgp.models import ASN, BGPSession, RoutingPolicy, BGPPeerGroup, Community
-from netbox_bgp.filters import (
+from nautobot_bgp_plugin.models import ASN, BGPSession, RoutingPolicy, BGPPeerGroup, Community
+from nautobot_bgp_plugin.filters import (
     ASNFilterSet,
     BGPSessionFilterSet,
     RoutingPolicyFilterSet,

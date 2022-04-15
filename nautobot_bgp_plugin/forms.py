@@ -2,12 +2,12 @@ from django import forms
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from django.utils.translation import gettext as _
 
-from extras.models import Tag
-from tenancy.models import Tenant
-from dcim.models import Device, Site
-from ipam.models import IPAddress
-from ipam.formfields import IPNetworkFormField
-from utilities.forms import (
+from nautobot.extras.models import Tag
+from nautobot.tenancy.models import Tenant
+from nautobot.dcim.models import Device, Site
+from nautobot.ipam.models import IPAddress
+from nautobot.ipam.formfields import IPNetworkFormField
+from nautobot.utilities.forms import (
     BootstrapMixin,
     DynamicModelChoiceField,
     BulkEditForm,
@@ -18,7 +18,7 @@ from utilities.forms import (
     StaticSelect2Multiple,
     TagFilterField,
 )
-from extras.forms import (
+from nautobot.extras.forms import (
     CustomFieldModelForm,
     CustomFieldBulkEditForm,
     CustomFieldFilterForm,
