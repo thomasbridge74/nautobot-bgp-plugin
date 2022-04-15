@@ -5,32 +5,30 @@ from .tables import BGPSessionTable
 
 
 class DeviceBGPSession(PluginTemplateExtension):
-    model = 'dcim.device'
+    model = "dcim.device"
 
     def left_page(self):
-        if self.context['config'].get('device_ext_page') == 'left':
+        if self.context["config"].get("device_ext_page") == "left":
             return self.x_page()
-        return ''
+        return ""
 
     def right_page(self):
-        if self.context['config'].get('device_ext_page') == 'right':
+        if self.context["config"].get("device_ext_page") == "right":
             return self.x_page()
-        return ''
+        return ""
 
     def full_width_page(self):
-        if self.context['config'].get('device_ext_page') == 'full_width':
+        if self.context["config"].get("device_ext_page") == "full_width":
             return self.x_page()
-        return ''
+        return ""
 
     def x_page(self):
-        obj = self.context['object']
+        obj = self.context["object"]
         sess = BGPSession.objects.filter(device=obj)
         sess_table = BGPSessionTable(sess)
         return self.render(
-            'nautobot_bgp_plugin/device_extend.html',
-            extra_context={
-                'related_session_table': sess_table
-            }
+            "nautobot_bgp_plugin/device_extend.html",
+            extra_context={"related_session_table": sess_table},
         )
 
 

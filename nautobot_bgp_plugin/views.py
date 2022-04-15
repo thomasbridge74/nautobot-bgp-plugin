@@ -3,16 +3,34 @@ from django.db.models import Q
 from netbox.views import generic
 
 from .filters import (
-    ASNFilterSet, CommunityFilterSet, BGPSessionFilterSet,
-    RoutingPolicyFilterSet, BGPPeerGroupFilterSet
+    ASNFilterSet,
+    CommunityFilterSet,
+    BGPSessionFilterSet,
+    RoutingPolicyFilterSet,
+    BGPPeerGroupFilterSet,
 )
 from .models import ASN, Community, BGPSession, RoutingPolicy, BGPPeerGroup
-from .tables import ASNTable, CommunityTable, BGPSessionTable, RoutingPolicyTable, BGPPeerGroupTable
+from .tables import (
+    ASNTable,
+    CommunityTable,
+    BGPSessionTable,
+    RoutingPolicyTable,
+    BGPPeerGroupTable,
+)
 from .forms import (
-    ASNFilterForm, ASNBulkEditForm, ASNForm, CommunityForm,
-    CommunityFilterForm, CommunityBulkEditForm, BGPSessionForm,
-    BGPSessionFilterForm, BGPSessionAddForm, RoutingPolicyFilterForm,
-    RoutingPolicyForm, BGPPeerGroupFilterForm, BGPPeerGroupForm
+    ASNFilterForm,
+    ASNBulkEditForm,
+    ASNForm,
+    CommunityForm,
+    CommunityFilterForm,
+    CommunityBulkEditForm,
+    BGPSessionForm,
+    BGPSessionFilterForm,
+    BGPSessionAddForm,
+    RoutingPolicyFilterForm,
+    RoutingPolicyForm,
+    BGPPeerGroupFilterForm,
+    BGPPeerGroupForm,
 )
 
 
@@ -21,19 +39,19 @@ class ASNListView(generic.ObjectListView):
     filterset = ASNFilterSet
     filterset_form = ASNFilterForm
     table = ASNTable
-    action_buttons = ('add',)
+    action_buttons = ("add",)
 
 
 class ASNView(generic.ObjectView):
     queryset = ASN.objects.all()
-    template_name = 'nautobot_bgp_plugin/asn.html'
+    template_name = "nautobot_bgp_plugin/asn.html"
 
     def get_extra_context(self, request, instance):
-        sess = BGPSession.objects.filter(remote_as=instance) | BGPSession.objects.filter(local_as=instance)
+        sess = BGPSession.objects.filter(
+            remote_as=instance
+        ) | BGPSession.objects.filter(local_as=instance)
         sess_table = BGPSessionTable(sess)
-        return {
-            'related_session_table': sess_table
-        }
+        return {"related_session_table": sess_table}
 
 
 class ASNEditView(generic.ObjectEditView):
@@ -62,12 +80,12 @@ class CommunityListView(generic.ObjectListView):
     filterset = CommunityFilterSet
     filterset_form = CommunityFilterForm
     table = CommunityTable
-    action_buttons = ('add',)
+    action_buttons = ("add",)
 
 
 class CommunityView(generic.ObjectView):
     queryset = Community.objects.all()
-    template_name = 'nautobot_bgp_plugin/community.html'
+    template_name = "nautobot_bgp_plugin/community.html"
 
 
 class CommunityEditView(generic.ObjectEditView):
@@ -96,7 +114,7 @@ class BGPSessionListView(generic.ObjectListView):
     filterset = BGPSessionFilterSet
     filterset_form = BGPSessionFilterForm
     table = BGPSessionTable
-    action_buttons = ('add',)
+    action_buttons = ("add",)
 
 
 class BGPSessionEditView(generic.ObjectEditView):
@@ -116,28 +134,28 @@ class BGPSessionBulkDeleteView(generic.BulkDeleteView):
 
 class BGPSessionView(generic.ObjectView):
     queryset = BGPSession.objects.all()
-    template_name = 'nautobot_bgp_plugin/bgpsession.html'
+    template_name = "nautobot_bgp_plugin/bgpsession.html"
 
     def get_extra_context(self, request, instance):
         if instance.peer_group:
-            import_policies_qs = instance.import_policies.all() | instance.peer_group.import_policies.all()
-            export_policies_qs = instance.export_policies.all() | instance.peer_group.export_policies.all()
+            import_policies_qs = (
+                instance.import_policies.all()
+                | instance.peer_group.import_policies.all()
+            )
+            export_policies_qs = (
+                instance.export_policies.all()
+                | instance.peer_group.export_policies.all()
+            )
         else:
             import_policies_qs = instance.import_policies.all()
             export_policies_qs = instance.export_policies.all()
 
-        import_policies_table = RoutingPolicyTable(
-            import_policies_qs,
-            orderable=False
-        )
-        export_policies_table = RoutingPolicyTable(
-            export_policies_qs,
-            orderable=False
-        )
+        import_policies_table = RoutingPolicyTable(import_policies_qs, orderable=False)
+        export_policies_table = RoutingPolicyTable(export_policies_qs, orderable=False)
 
         return {
-            'import_policies_table': import_policies_table,
-            'export_policies_table': export_policies_table
+            "import_policies_table": import_policies_table,
+            "export_policies_table": export_policies_table,
         }
 
 
@@ -150,7 +168,7 @@ class RoutingPolicyListView(generic.ObjectListView):
     filterset = RoutingPolicyFilterSet
     filterset_form = RoutingPolicyFilterForm
     table = RoutingPolicyTable
-    action_buttons = ('add',)
+    action_buttons = ("add",)
 
 
 class RoutingPolicyEditView(generic.ObjectEditView):
@@ -165,7 +183,7 @@ class RoutingPolicyBulkDeleteView(generic.BulkDeleteView):
 
 class RoutingPolicyView(generic.ObjectView):
     queryset = RoutingPolicy.objects.all()
-    template_name = 'nautobot_bgp_plugin/routingpolicy.html'
+    template_name = "nautobot_bgp_plugin/routingpolicy.html"
 
     def get_extra_context(self, request, instance):
         sess = BGPSession.objects.filter(
@@ -176,9 +194,7 @@ class RoutingPolicyView(generic.ObjectView):
         )
         sess = sess.distinct()
         sess_table = BGPSessionTable(sess)
-        return {
-            'related_session_table': sess_table
-        }
+        return {"related_session_table": sess_table}
 
 
 class RoutingPolicyDeleteView(generic.ObjectDeleteView):
@@ -190,7 +206,7 @@ class BGPPeerGroupListView(generic.ObjectListView):
     filterset = BGPPeerGroupFilterSet
     filterset_form = BGPPeerGroupFilterForm
     table = BGPPeerGroupTable
-    action_buttons = ('add',)
+    action_buttons = ("add",)
 
 
 class BGPPeerGroupEditView(generic.ObjectEditView):
@@ -205,25 +221,23 @@ class BGPPeerGroupBulkDeleteView(generic.BulkDeleteView):
 
 class BGPPeerGroupView(generic.ObjectView):
     queryset = BGPPeerGroup.objects.all()
-    template_name = 'nautobot_bgp_plugin/bgppeergroup.html'
+    template_name = "nautobot_bgp_plugin/bgppeergroup.html"
 
     def get_extra_context(self, request, instance):
         import_policies_table = RoutingPolicyTable(
-            instance.import_policies.all(),
-            orderable=False
+            instance.import_policies.all(), orderable=False
         )
         export_policies_table = RoutingPolicyTable(
-            instance.export_policies.all(),
-            orderable=False
+            instance.export_policies.all(), orderable=False
         )
 
         sess = BGPSession.objects.filter(peer_group=instance)
         sess = sess.distinct()
         sess_table = BGPSessionTable(sess)
         return {
-            'import_policies_table': import_policies_table,
-            'export_policies_table': export_policies_table,
-            'related_session_table': sess_table
+            "import_policies_table": import_policies_table,
+            "export_policies_table": export_policies_table,
+            "related_session_table": sess_table,
         }
 
 

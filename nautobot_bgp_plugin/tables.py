@@ -26,38 +26,26 @@ POLICIES = """
 
 
 class ASNTable(NetBoxTable):
-    number = tables.LinkColumn(text=lambda record: record.__str__(), args=[A('pk')])
-    status = ChoiceFieldColumn(
-        default=AVAILABLE_LABEL
-    )
+    number = tables.LinkColumn(text=lambda record: record.__str__(), args=[A("pk")])
+    status = ChoiceFieldColumn(default=AVAILABLE_LABEL)
     site = tables.LinkColumn()
-    tenant = tables.TemplateColumn(
-        template_code=COL_TENANT
-    )
+    tenant = tables.TemplateColumn(template_code=COL_TENANT)
 
     class Meta(NetBoxTable.Meta):
         model = ASN
-        fields = ('pk', 'number', 'description', 'status', 'tenant')
+        fields = ("pk", "number", "description", "status", "tenant")
 
 
 class CommunityTable(NetBoxTable):
     value = tables.LinkColumn()
-    status = ChoiceFieldColumn(
-        default=AVAILABLE_LABEL
-    )
-    tenant = tables.TemplateColumn(
-        template_code=COL_TENANT
-    )
-    tags = TagColumn(
-        url_name='plugins:nautobot_bgp_plugin:community_list'
-    )
+    status = ChoiceFieldColumn(default=AVAILABLE_LABEL)
+    tenant = tables.TemplateColumn(template_code=COL_TENANT)
+    tags = TagColumn(url_name="plugins:nautobot_bgp_plugin:community_list")
 
     class Meta(NetBoxTable.Meta):
         model = Community
-        fields = ('pk', 'value', 'description', 'status', 'tenant', 'tags')
-        default_columns = (
-            'pk', 'value', 'description', 'status', 'tenant'
-        )
+        fields = ("pk", "value", "description", "status", "tenant", "tags")
+        default_columns = ("pk", "value", "description", "status", "tenant")
 
 
 class BGPSessionTable(NetBoxTable):
@@ -69,24 +57,37 @@ class BGPSessionTable(NetBoxTable):
     remote_as = tables.LinkColumn()
     site = tables.LinkColumn()
     peer_group = tables.LinkColumn()
-    status = ChoiceFieldColumn(
-        default=AVAILABLE_LABEL
-    )
-    tenant = tables.TemplateColumn(
-        template_code=COL_TENANT
-    )
+    status = ChoiceFieldColumn(default=AVAILABLE_LABEL)
+    tenant = tables.TemplateColumn(template_code=COL_TENANT)
 
     class Meta(NetBoxTable.Meta):
         model = BGPSession
         fields = (
-            'pk', 'name', 'device', 'local_address', 'local_as',
-            'remote_address', 'remote_as', 'description', 'peer_group',
-            'site', 'status', 'tenant'
+            "pk",
+            "name",
+            "device",
+            "local_address",
+            "local_as",
+            "remote_address",
+            "remote_as",
+            "description",
+            "peer_group",
+            "site",
+            "status",
+            "tenant",
         )
         default_columns = (
-            'pk', 'name', 'device', 'local_address', 'local_as',
-            'remote_address', 'remote_as', 'description',
-            'site', 'status', 'tenant'
+            "pk",
+            "name",
+            "device",
+            "local_address",
+            "local_as",
+            "remote_address",
+            "remote_as",
+            "description",
+            "site",
+            "status",
+            "tenant",
         )
 
 
@@ -95,29 +96,23 @@ class RoutingPolicyTable(NetBoxTable):
 
     class Meta(NetBoxTable.Meta):
         model = RoutingPolicy
-        fields = ('pk', 'name', 'description')
+        fields = ("pk", "name", "description")
 
 
 class BGPPeerGroupTable(NetBoxTable):
     name = tables.LinkColumn()
-    import_policies = tables.TemplateColumn(
-        template_code=POLICIES,
-        orderable=False
-    )
-    export_policies = tables.TemplateColumn(
-        template_code=POLICIES,
-        orderable=False
-    )
-    tags = TagColumn(
-        url_name='plugins:nautobot_bgp_plugin:peer_group_list'
-    )
+    import_policies = tables.TemplateColumn(template_code=POLICIES, orderable=False)
+    export_policies = tables.TemplateColumn(template_code=POLICIES, orderable=False)
+    tags = TagColumn(url_name="plugins:nautobot_bgp_plugin:peer_group_list")
 
     class Meta(NetBoxTable.Meta):
         model = BGPPeerGroup
         fields = (
-            'pk', 'name', 'description', 'tags',
-            'import_policies', 'export_policies'
+            "pk",
+            "name",
+            "description",
+            "tags",
+            "import_policies",
+            "export_policies",
         )
-        default_columns = (
-            'pk', 'name', 'description'
-        )
+        default_columns = ("pk", "name", "description")
