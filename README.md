@@ -12,6 +12,20 @@ I worked with Nautobot v1.2.11 - your mileage may vary!
 ## Installation
 
 Install direct from the repo.    Not currently available through pypi.
+```shell
+pip install git+https://github.com/thomasbridge74/nautobot-bgp-plugin.git
+```
+
+## Docker image
+I have forked [Nautobot Lab](https://github.com/thomasbridge74/nautobot-lab) and installed the
+BGP Plugin into my fork.   I have also pushed it to Docker Hub.
+
+This can be run as:
+```shell
+docker run -itd --name nautobot_bgp -p 8000:8000 thomasbridge/nautobot-bgp-lab
+```
+
+This is all added on an adhoc basis and in the hope it will be useful to some.
 
 ## Configuration
 
