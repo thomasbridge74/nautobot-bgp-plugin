@@ -38,7 +38,7 @@ urlpatterns = [
     path("asn/add/", ASNEditView.as_view(), name="asn_add"),
     path("asn/edit/", ASNBulkEditView.as_view(), name="asn_bulk_edit"),
     path("asn/delete/", ASNBulkDeleteView.as_view(), name="asn_bulk_delete"),
-cd    path("asn/<uuid:pk>/", ASNView.as_view(), name="asn"),
+    path("asn/<uuid:pk>/", ASNView.as_view(), name="asn"),
     path("asn/<uuid:pk>/edit/", ASNEditView.as_view(), name="asn_edit"),
     path("asn/<uuid:pk>/delete/", ASNDeleteView.as_view(), name="asn_delete"),
     path(
