@@ -24,7 +24,7 @@ def get_version(rel_path):
 
 
 setup(
-    name='nautobot-bgp-plugin',
+    name='nautobot_bgp_plugin',
     version=get_version('nautobot_bgp_plugin/version.py'),
     description='BGP related stuff',
     long_description=long_description,
