@@ -24,14 +24,14 @@ def get_version(rel_path):
 
 
 setup(
-    name='netbox-bgp',
+    name='nautobot-bgp-plugin',
     version=get_version('nautobot_bgp_plugin/version.py'),
     description='BGP related stuff',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/k01ek/netbox-bgp',
-    author='Nikolay Yuzefovich',
-    author_email='mgk.kolek@gmail.com',
+    url='https://github.com/thomasbridge74/nautobot-bgp-plugin',
+    author='Thomas Bridge (forked from Nikolay Yuzefovich)',
+    author_email='thomas.bridge@icloud.com',
     install_requires=[],
     packages=find_packages(),
     include_package_data=True,
