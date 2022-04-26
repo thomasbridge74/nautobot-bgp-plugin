@@ -8,6 +8,7 @@ from nautobot.utilities.querysets import RestrictedQuerySet
 
 # try:
 from nautobot.extras.models import ChangeLoggedModel
+from nautobot.core.models import BaseModel
 # except ImportError:
 #     from netbox.models import ChangeLoggedModel
 
@@ -75,7 +76,7 @@ class ASNGroup(ChangeLoggedModel):
 
 
 @extras_features("custom_fields", "export_templates", "webhooks")
-class RoutingPolicy(ChangeLoggedModel, CustomFieldModel):
+class RoutingPolicy(ChangeLoggedModel, CustomFieldModel, BaseModel):
     """ """
 
     name = models.CharField(max_length=100)
@@ -97,7 +98,7 @@ class RoutingPolicy(ChangeLoggedModel, CustomFieldModel):
 
 
 @extras_features("custom_fields", "export_templates", "webhooks")
-class BGPPeerGroup(ChangeLoggedModel, CustomFieldModel):
+class BGPPeerGroup(ChangeLoggedModel, CustomFieldModel, BaseModel):
     """ """
 
     name = models.CharField(max_length=100)
@@ -124,7 +125,7 @@ class BGPPeerGroup(ChangeLoggedModel, CustomFieldModel):
         return reverse("plugins:nautobot_bgp_plugin:peergroup", args=[self.pk])
 
 
-class BGPBase(ChangeLoggedModel):
+class BGPBase(BaseModel, ChangeLoggedModel):
     """ """
 
     site = models.ForeignKey(
@@ -205,7 +206,7 @@ class Community(BGPBase):
 
 
 @extras_features("custom_fields", "export_templates", "webhooks")
-class BGPSession(ChangeLoggedModel, CustomFieldModel):
+class BGPSession(ChangeLoggedModel, CustomFieldModel, BaseModel):
     name = models.CharField(max_length=64, blank=True, null=True)
     site = models.ForeignKey(
         to="dcim.Site", on_delete=models.SET_NULL, blank=True, null=True

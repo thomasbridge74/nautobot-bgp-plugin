@@ -38,11 +38,11 @@ urlpatterns = [
     path("asn/add/", ASNEditView.as_view(), name="asn_add"),
     path("asn/edit/", ASNBulkEditView.as_view(), name="asn_bulk_edit"),
     path("asn/delete/", ASNBulkDeleteView.as_view(), name="asn_bulk_delete"),
-    path("asn/<int:pk>/", ASNView.as_view(), name="asn"),
-    path("asn/<int:pk>/edit/", ASNEditView.as_view(), name="asn_edit"),
-    path("asn/<int:pk>/delete/", ASNDeleteView.as_view(), name="asn_delete"),
+cd    path("asn/<uuid:pk>/", ASNView.as_view(), name="asn"),
+    path("asn/<uuid:pk>/edit/", ASNEditView.as_view(), name="asn_edit"),
+    path("asn/<uuid:pk>/delete/", ASNDeleteView.as_view(), name="asn_delete"),
     path(
-        "asn/<int:pk>/changelog/",
+        "asn/<uuid:pk>/changelog/",
         ObjectChangeLogView.as_view(),
         name="asn_changelog",
         kwargs={"model": ASN},
@@ -58,17 +58,17 @@ urlpatterns = [
         CommunityBulkDeleteView.as_view(),
         name="community_bulk_delete",
     ),
-    path("community/<int:pk>/", CommunityView.as_view(), name="community"),
+    path("community/<uuid:pk>/", CommunityView.as_view(), name="community"),
     path(
-        "community/<int:pk>/edit/", CommunityEditView.as_view(), name="community_edit"
+        "community/<uuid:pk>/edit/", CommunityEditView.as_view(), name="community_edit"
     ),
     path(
-        "community/<int:pk>/delete/",
+        "community/<uuid:pk>/delete/",
         CommunityDeleteView.as_view(),
         name="community_delete",
     ),
     path(
-        "community/<int:pk>/changelog/",
+        "community/<uuid:pk>/changelog/",
         ObjectChangeLogView.as_view(),
         name="community_changelog",
         kwargs={"model": Community},
@@ -81,22 +81,22 @@ urlpatterns = [
         BGPSessionBulkDeleteView.as_view(),
         name="session_bulk_delete",
     ),
-    path("session/<int:pk>/", BGPSessionView.as_view(), name="session"),
-    path("session/<int:pk>/edit/", BGPSessionEditView.as_view(), name="session_edit"),
+    path("session/<uuid:pk>/", BGPSessionView.as_view(), name="session"),
+    path("session/<uuid:pk>/edit/", BGPSessionEditView.as_view(), name="session_edit"),
     path(
-        "session/<int:pk>/delete/",
+        "session/<uuid:pk>/delete/",
         BGPSessionDeleteView.as_view(),
         name="session_delete",
     ),
     path(
-        "session/<int:pk>/changelog/",
+        "session/<uuid:pk>/changelog/",
         ObjectChangeLogView.as_view(),
         name="session_changelog",
         kwargs={"model": BGPSession},
     ),
     # Routing Policies
     path(
-        "routing-policy/<int:pk>/", RoutingPolicyView.as_view(), name="routing_policy"
+        "routing-policy/<uuid:pk>/", RoutingPolicyView.as_view(), name="routing_policy"
     ),
     path(
         "routing-policy/", RoutingPolicyListView.as_view(), name="routing_policy_list"
@@ -107,7 +107,7 @@ urlpatterns = [
         name="routing_policy_add",
     ),
     path(
-        "routing-policy/<int:pk>/edit/",
+        "routing-policy/<uuid:pk>/edit/",
         RoutingPolicyEditView.as_view(),
         name="routing_policy_edit",
     ),
@@ -117,12 +117,12 @@ urlpatterns = [
         name="routing_policy_bulk_delete",
     ),
     path(
-        "routing-policy/<int:pk>/delete/",
+        "routing-policy/<uuid:pk>/delete/",
         RoutingPolicyDeleteView.as_view(),
         name="routing_policy_delete",
     ),
     path(
-        "routing-policy/<int:pk>/changelog/",
+        "routing-policy/<uuid:pk>/changelog/",
         ObjectChangeLogView.as_view(),
         name="routing_policy_changelog",
         kwargs={"model": RoutingPolicy},
@@ -135,19 +135,19 @@ urlpatterns = [
         BGPPeerGroupBulkDeleteView.as_view(),
         name="peergroup_bulk_delete",
     ),
-    path("peer-group/<int:pk>/", BGPPeerGroupView.as_view(), name="peergroup"),
+    path("peer-group/<uuid:pk>/", BGPPeerGroupView.as_view(), name="peergroup"),
     path(
-        "peer-group/<int:pk>/edit/",
+        "peer-group/<uuid:pk>/edit/",
         BGPPeerGroupEditView.as_view(),
         name="peergroup_edit",
     ),
     path(
-        "peer-group/<int:pk>/delete/",
+        "peer-group/<uuid:pk>/delete/",
         BGPPeerGroupDeleteView.as_view(),
         name="peergroup_delete",
     ),
     path(
-        "peer-group/<int:pk>/changelog/",
+        "peer-group/<uuid:pk>/changelog/",
         ObjectChangeLogView.as_view(),
         name="peergroup_changelog",
         kwargs={"model": BGPPeerGroup},
